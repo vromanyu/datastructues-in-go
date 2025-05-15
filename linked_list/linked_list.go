@@ -1,5 +1,7 @@
 package linked_list
 
+import "fmt"
+
 type LinkedList[T int | float64] struct {
 	Head *Node[T]
 	Tail *Node[T]
@@ -31,6 +33,10 @@ func NewEmptyFloatLinkedList() *LinkedList[float64] {
 	}
 }
 
+func (list *LinkedList[T]) String() string {
+	return fmt.Sprintf("head: %v\ntail: %v\nsize: %d\n", list.Head, list.Tail, list.size)
+}
+
 func (list *LinkedList[T]) Size() int {
 	return list.size
 }
@@ -45,4 +51,8 @@ func NewNode[T int | float64](value T) *Node[T] {
 		Value: value,
 		Next:  nil,
 	}
+}
+
+func (node *Node[T]) String() string {
+	return fmt.Sprintf("value: %v, next: %v", node.Value, node.Next)
 }
