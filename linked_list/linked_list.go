@@ -33,6 +33,16 @@ func NewEmptyFloatLinkedList() *LinkedList[float64] {
 	}
 }
 
+func (list *LinkedList[T]) Print() {
+	node := list.Head
+	index := 0
+	for node != nil {
+		fmt.Println("index:", index, "value:", node.Value)
+		node = node.Next
+		index++
+	}
+}
+
 func (list *LinkedList[T]) String() string {
 	return fmt.Sprintf("head: %v\ntail: %v\nsize: %d\n", list.Head, list.Tail, list.size)
 }
