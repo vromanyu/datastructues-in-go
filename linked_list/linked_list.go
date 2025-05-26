@@ -1,14 +1,23 @@
 package linked_list
 
-import "fmt"
+import (
+	"fmt"
 
-type LinkedList[T int | float64] struct {
+	"golang.org/x/exp/constraints"
+)
+
+type LinkedList[T constraints.Ordered] struct {
 	Head *Node[T]
 	Tail *Node[T]
 	size int
 }
 
-func NewLinkedList[T int | float64](value T) *LinkedList[T] {
+type Node[T constraints.Ordered] struct {
+	Value T
+	Next  *Node[T]
+}
+
+func NewLinkedList[T constraints.Ordered](value T) *LinkedList[T] {
 	node := NewNode(value)
 	return &LinkedList[T]{
 		Head: node,
@@ -17,16 +26,15 @@ func NewLinkedList[T int | float64](value T) *LinkedList[T] {
 	}
 }
 
-func NewEmptyIntLinkedList() *LinkedList[int] {
-	return &LinkedList[int]{
-		Head: nil,
-		Tail: nil,
-		size: 0,
+func NewNode[T constraints.Ordered](value T) *Node[T] {
+	return &Node[T]{
+		Value: value,
+		Next:  nil,
 	}
 }
 
-func NewEmptyFloatLinkedList() *LinkedList[float64] {
-	return &LinkedList[float64]{
+func NewEmptyIntLinkedList[T constraints.Ordered]() *LinkedList[T] {
+	return &LinkedList[T]{
 		Head: nil,
 		Tail: nil,
 		size: 0,
@@ -34,33 +42,15 @@ func NewEmptyFloatLinkedList() *LinkedList[float64] {
 }
 
 func (list *LinkedList[T]) Print() {
-	node := list.Head
-	index := 0
-	for node != nil {
-		fmt.Println("index:", index, "value:", node.Value)
-		node = node.Next
-		index++
+	start := list.Head
+	for start != nil {
+		fmt.Println(start.Value)
+		start = start.Next
 	}
-}
-
-func (list *LinkedList[T]) String() string {
-	return fmt.Sprintf("head: %v\ntail: %v\nsize: %d\n", list.Head, list.Tail, list.size)
 }
 
 func (list *LinkedList[T]) Size() int {
 	return list.size
-}
-
-type Node[T int | float64] struct {
-	Value T
-	Next  *Node[T]
-}
-
-func NewNode[T int | float64](value T) *Node[T] {
-	return &Node[T]{
-		Value: value,
-		Next:  nil,
-	}
 }
 
 func (node *Node[T]) String() string {
