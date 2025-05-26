@@ -108,3 +108,25 @@ func TestRemoveLastFromListWithMultipleNodes(t *testing.T) {
 		t.Errorf("expected nil when removing last from empty list, got non-nil value")
 	}
 }
+
+func TestPrependOnEmptyLinkedList(t *testing.T) {
+	ll := NewEmptyIntLinkedList[int]()
+	ll.Prepend(1)
+	if ll.Head == nil || ll.Tail == nil || ll.size != 1 {
+		t.Errorf("expected linked list with one node, got head: %v, tail: %v, size: %d", ll.Head, ll.Tail, ll.size)
+	}
+	if ll.Head.Value != 1 || ll.Tail.Value != 1 {
+		t.Errorf("expected head and tail value to be 1, got head: %v, tail: %v", ll.Head.Value, ll.Tail.Value)
+	}
+}
+
+func TestPrependOnNonEmptyLinkedList(t *testing.T) {
+	ll := NewLinkedList(2)
+	ll.Prepend(1)
+	if ll.size != 2 {
+		t.Errorf("expected linked list size to be 2 after prepending, got size: %d", ll.size)
+	}
+	if ll.Head.Value != 1 {
+		t.Errorf("expected head value to be 1, got head: %v\n", ll.Head.Value)
+	}
+}
