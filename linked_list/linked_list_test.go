@@ -130,3 +130,12 @@ func TestPrependOnNonEmptyLinkedList(t *testing.T) {
 		t.Errorf("expected head value to be 1, got head: %v\n", ll.Head.Value)
 	}
 }
+
+func TestLinkedList_RemoveFirst(t *testing.T) {
+	ll := NewLinkedList(1)
+	ll.Append(2)
+	node := ll.RemoveFirst()
+	if node == nil || node.Value != 1 {
+		t.Errorf("expected to remove node with value 1, got: %v", node)
+	}
+}

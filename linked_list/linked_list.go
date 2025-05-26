@@ -87,6 +87,20 @@ func (list *LinkedList[T]) Prepend(data T) {
 	list.size++
 }
 
+func (list *LinkedList[T]) RemoveFirst() *Node[T] {
+	if list.Head == nil {
+		return nil
+	}
+	target := list.Head
+	list.Head = target.Next
+	target.Next = nil
+	list.size--
+	if list.size == 0 {
+		list.Tail = nil
+	}
+	return target
+}
+
 func (list *LinkedList[T]) Print() {
 	start := list.Head
 	for start != nil {
