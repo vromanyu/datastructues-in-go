@@ -227,3 +227,21 @@ func TestLinkedList_Insert(t *testing.T) {
 
 	ll.Print()
 }
+
+func TestLinkedList_RemoveAtIndex(t *testing.T) {
+	ll := NewLinkedList(1)
+	ll.Append(2)
+	ll.Append(3)
+	ll.Append(4)
+	ll.Append(5)
+
+	n := ll.Remove(1)
+	if n == nil {
+		t.Errorf("expected to remove node at index 1, got nil")
+		return
+	}
+	if n.Value != 2 {
+		t.Errorf("expected to remove node with value 2, got: %v", n.Value)
+	}
+
+}

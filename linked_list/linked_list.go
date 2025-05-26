@@ -147,6 +147,24 @@ func (list *LinkedList[T]) Insert(index int, value T) bool {
 	return true
 }
 
+func (list *LinkedList[T]) Remove(index int) *Node[T] {
+	if index < 0 || index >= list.size {
+		return nil
+	}
+	if index == 0 {
+		return list.RemoveFirst()
+	}
+	if index == list.size-1 {
+		return list.RemoveLast()
+	}
+	prev := list.Get(index - 1)
+	target := prev.Next
+	prev.Next = target.Next
+	target.Next = nil
+	list.size--
+	return target
+}
+
 func (list *LinkedList[T]) Print() {
 	start := list.Head
 	for start != nil {
