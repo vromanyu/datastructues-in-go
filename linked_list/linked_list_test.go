@@ -139,3 +139,35 @@ func TestLinkedList_RemoveFirst(t *testing.T) {
 		t.Errorf("expected to remove node with value 1, got: %v", node)
 	}
 }
+
+func TestLinkedList_Get(t *testing.T) {
+	ll := NewLinkedList(1)
+	ll.Append(2)
+	ll.Append(3)
+	ll.Append(4)
+	ll.Append(5)
+	first := ll.Get(0)
+	if first == nil || first.Value != 1 {
+		t.Errorf("expected to get first value, got %v", first)
+	}
+	second := ll.Get(1)
+	if second == nil || second.Value != 2 {
+		t.Errorf("expected to get second value, got %v", second)
+	}
+	third := ll.Get(2)
+	if third == nil || third.Value != 3 {
+		t.Errorf("expected to get third value, got %v", third)
+	}
+	last := ll.Get(ll.size - 1)
+	if last == nil || last.Value != 5 {
+		t.Errorf("expected to get last value, got %v", last)
+	}
+	out := ll.Get(10)
+	if out != nil {
+		t.Errorf("expected to get nil, got %v", out)
+	}
+	out = ll.Get(-1)
+	if out != nil {
+		t.Errorf("expected to get nil, got %v", out)
+	}
+}

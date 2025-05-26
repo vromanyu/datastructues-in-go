@@ -101,6 +101,23 @@ func (list *LinkedList[T]) RemoveFirst() *Node[T] {
 	return target
 }
 
+func (list *LinkedList[T]) Get(index int) *Node[T] {
+	if index < 0 || index >= list.size {
+		return nil
+	}
+	if index == list.size-1 {
+		return list.Tail
+	}
+	if index == 0 {
+		return list.Head
+	}
+	temp := list.Head
+	for i := 0; i < index; i++ {
+		temp = temp.Next
+	}
+	return temp
+}
+
 func (list *LinkedList[T]) Print() {
 	start := list.Head
 	for start != nil {
