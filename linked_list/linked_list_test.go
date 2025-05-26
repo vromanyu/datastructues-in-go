@@ -171,3 +171,37 @@ func TestLinkedList_Get(t *testing.T) {
 		t.Errorf("expected to get nil, got %v", out)
 	}
 }
+
+func TestLinkedList_Set(t *testing.T) {
+	ll := NewLinkedList(1)
+	ll.Append(2)
+	ll.Append(3)
+	ll.Append(4)
+	ll.Append(5)
+
+	ll.Set(0, 10)
+	ll.Set(1, 20)
+	ll.Set(2, 30)
+	ll.Set(3, 40)
+	ll.Set(4, 50)
+
+	if ll.Get(0) == nil || ll.Get(0).Value != 10 {
+		t.Errorf("expected index %v to have %v value", 0, 10)
+	}
+
+	if ll.Get(1) == nil || ll.Get(1).Value != 20 {
+		t.Errorf("expected index %v to have %v value", 1, 20)
+	}
+
+	if ll.Get(2) == nil || ll.Get(2).Value != 30 {
+		t.Errorf("expected index %v to have %v value", 2, 30)
+	}
+
+	if ll.Get(3) == nil || ll.Get(3).Value != 40 {
+		t.Errorf("expected index %v to have %v value", 3, 40)
+	}
+
+	if ll.Get(4) == nil || ll.Get(4).Value != 50 {
+		t.Errorf("expected index %v to have %v value", 4, 50)
+	}
+}

@@ -118,6 +118,15 @@ func (list *LinkedList[T]) Get(index int) *Node[T] {
 	return temp
 }
 
+func (list *LinkedList[T]) Set(index int, value T) bool {
+	temp := list.Get(index)
+	if temp == nil {
+		return false
+	}
+	temp.Value = value
+	return true
+}
+
 func (list *LinkedList[T]) Print() {
 	start := list.Head
 	for start != nil {
