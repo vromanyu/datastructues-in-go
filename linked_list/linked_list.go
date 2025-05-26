@@ -41,6 +41,18 @@ func NewEmptyIntLinkedList[T constraints.Ordered]() *LinkedList[T] {
 	}
 }
 
+func (list *LinkedList[T]) Append(value T) {
+	newNode := NewNode(value)
+	if list.Head == nil {
+		list.Head = newNode
+		list.Tail = newNode
+	} else {
+		list.Tail.Next = newNode
+		list.Tail = newNode
+	}
+	list.size++
+}
+
 func (list *LinkedList[T]) Print() {
 	start := list.Head
 	for start != nil {
