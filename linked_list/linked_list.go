@@ -53,6 +53,28 @@ func (list *LinkedList[T]) Append(value T) {
 	list.size++
 }
 
+func (list *LinkedList[T]) RemoveLast() *Node[T] {
+	if list.size == 0 {
+		return nil
+	}
+
+	pre, temp := list.Head, list.Head
+
+	for temp.Next != nil {
+		pre = temp
+		temp = temp.Next
+	}
+	list.Tail = pre
+	list.Tail.Next = nil
+	list.size--
+	if list.size == 0 {
+		list.Head = nil
+		list.Tail = nil
+	}
+	return temp
+
+}
+
 func (list *LinkedList[T]) Print() {
 	start := list.Head
 	for start != nil {
