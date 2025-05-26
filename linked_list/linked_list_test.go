@@ -205,3 +205,25 @@ func TestLinkedList_Set(t *testing.T) {
 		t.Errorf("expected index %v to have %v value", 4, 50)
 	}
 }
+
+func TestLinkedList_Insert(t *testing.T) {
+	ll := NewLinkedList(1)
+	ll.Append(2)
+	ll.Append(3)
+	ll.Append(4)
+	ll.Append(5)
+
+	ll.Insert(0, 10)
+	if ll.Get(0).Value != 10 {
+		t.Errorf("expected index %v to have %v value", 0, 10)
+		ll.Print()
+	}
+
+	ll.Insert(2, 20)
+	if ll.Get(2).Value != 20 && ll.Get(1).Value != 1 {
+		t.Errorf("expected index %v to have %v value", 2, 20)
+		ll.Print()
+	}
+
+	ll.Print()
+}

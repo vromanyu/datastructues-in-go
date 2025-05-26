@@ -127,6 +127,26 @@ func (list *LinkedList[T]) Set(index int, value T) bool {
 	return true
 }
 
+func (list *LinkedList[T]) Insert(index int, value T) bool {
+	if index < 0 || index > list.size {
+		return false
+	}
+	if index == 0 {
+		list.Prepend(value)
+		return true
+	}
+	if index == list.size {
+		list.Append(value)
+		return true
+	}
+	temp := list.Get(index - 1)
+	node := NewNode[T](value)
+	node.Next = temp.Next
+	temp.Next = node
+	list.size++
+	return true
+}
+
 func (list *LinkedList[T]) Print() {
 	start := list.Head
 	for start != nil {
