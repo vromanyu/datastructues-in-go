@@ -54,7 +54,7 @@ func (list *LinkedList[T]) Append(value T) {
 }
 
 func (list *LinkedList[T]) RemoveLast() *Node[T] {
-	if list.size == 0 {
+	if list.Head == nil {
 		return nil
 	}
 
