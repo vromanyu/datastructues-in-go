@@ -165,6 +165,16 @@ func (list *LinkedList[T]) Remove(index int) *Node[T] {
 	return target
 }
 
+func (list *LinkedList[T]) GetValues() []T {
+	values := make([]T, 0, list.size)
+	start := list.Head
+	for start != nil {
+		values = append(values, start.Value)
+		start = start.Next
+	}
+	return values
+}
+
 func (list *LinkedList[T]) Print() {
 	start := list.Head
 	for start != nil {

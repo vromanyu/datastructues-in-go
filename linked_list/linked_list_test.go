@@ -3,6 +3,8 @@ package linked_list
 import (
 	"fmt"
 	"testing"
+
+	"golang.org/x/exp/slices"
 )
 
 func TestLinkedListEmptyConstructor(t *testing.T) {
@@ -244,4 +246,18 @@ func TestLinkedList_RemoveAtIndex(t *testing.T) {
 		t.Errorf("expected to remove node with value 2, got: %v", n.Value)
 	}
 
+}
+
+func TestLinkedList_GetValues(t *testing.T) {
+	expectedValues := []int{1, 2, 3, 4, 5}
+	ll := NewLinkedList(1)
+	ll.Append(2)
+	ll.Append(3)
+	ll.Append(4)
+	ll.Append(5)
+
+	values := ll.GetValues()
+	if slices.Equal(values, expectedValues) == false {
+		t.Errorf("expected values %v, got %v", expectedValues, values)
+	}
 }
